@@ -15,3 +15,11 @@ $ apt-get --allow-unauthenticated install sur5r-keyring
 $ apt-get update
 $ apt-get install i3
 ```
+
+##Install Chrome
+```sh
+$ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+$ apt-get update
+$ sudo dpkg -i google-chrome-stable_current_amd64.deb #May give a dependency error
+$ sudo apt-get -f install #Should fix it
+```
