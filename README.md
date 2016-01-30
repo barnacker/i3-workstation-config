@@ -23,3 +23,10 @@ $ apt-get update
 $ sudo dpkg -i google-chrome-stable_current_amd64.deb #May give a dependency error
 $ sudo apt-get -f install #Should fix it
 ```
+
+##Dark GTK Ambiance
+```sh
+$ sudo add-apt-repository ppa:ravefinity-project/ppa
+$ sudo apt-get update
+$ sudo apt-get install ambiance-blackout-colors
+```
