@@ -1,7 +1,17 @@
 # i3-workstation-config
-First, Ubuntu Gnome 15.10 on LVM(STRIPE):
+##Ubuntu Gnome 15.10 on LVM(STRIPE)
 
 After LiveCD Boot, setup the partitions:
 ```sh
 $ sudo apt-get install system-config-lvm
+```
+Then install on your partition
+
+##Install i3
+```sh
+$ echo "deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe" >> /etc/apt/sources.list
+$ apt-get update
+$ apt-get --allow-unauthenticated install sur5r-keyring
+$ apt-get update
+$ apt-get install i3
 ```
