@@ -31,6 +31,16 @@ $ sudo apt-get update
 $ sudo apt-get install ambiance-blackout-colors
 ```
 
+##Install feh
+
+##Install infinality
+http://www.webupd8.org/2013/06/better-font-rendering-in-linux-with.html
+```sh
+$ sudo add-apt-repository ppa:no1wantdthisname/ppa
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install fontconfig-infinality
+```
 ##Install Chrome
 ```sh
 $ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
