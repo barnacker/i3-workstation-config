@@ -9,6 +9,13 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+#UI Addons 
+#exec --no-startup-id nm-applet
+#exec --no-startup-id gnome-settings-daemon
+#
+#exec --no-startup-id ssh-add ~/.ssh/
+
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -90,8 +97,9 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 10%+ && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 10%- && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 1%+ #&& killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 1%- #&& killall -SIGUSR1 i3status
+#bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -100,10 +108,10 @@ set $wrk1 "1 "
 set $wrk2 "2 "
 set $wrk3 "3 "
 set $wrk4 "4 "
-set $wrk5 "5"
-set $wrk6 "6"
-set $wrk7 "7"
-set $wrk8 "8"
+set $wrk5 "5 "
+set $wrk6 "6 "
+set $wrk7 "7 "
+set $wrk8 "8 "
 set $wrk9 "9 "
 set $wrk10 "10 "
 
@@ -136,9 +144,11 @@ assign [instance="crx_knipolnnllmklapflnccelgolnpehhpl"] $wrk4
 assign [class="Gnome-terminal"] $wrk1
 assign [class="google-chrome"] $wrk2
 assign [class="Firefox"] $wrk2
+assign [class="jetbrains-pycharm-ce"] $wrk3
 
 # Float windows
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
+for_window [title="Sococo Screenshare is sharing your screen with app.sococo.com."] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -209,7 +219,7 @@ bar {
 #startup items
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/tlou-window.jpg
 exec --no-startup-id gnome-terminal
-exec --no-startup-id google-chrome
+#exec --no-startup-id google-chrome
 
 #finish with compton
 exec_always --no-startup-id compton -f
