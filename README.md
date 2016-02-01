@@ -1,7 +1,7 @@
 # i3-workstation-config
 ##Ubuntu Gnome 15.10 on LVM(STRIPE)
-
 * After LiveCD Boot, setup the partitions
+
   ```sh
   $ sudo apt-get install system-config-lvm
   ```
@@ -16,7 +16,8 @@
   $ apt-get update
   $ apt-get install i3
   ```
-*Disable Nautilus Desktop Background
+  
+* Disable Nautilus Desktop Background
 
   ```sh
   $ gsettings set org.gnome.desktop.background show-desktop-icons false
@@ -41,7 +42,7 @@
   $ sudo apt-get upgrade
   $ sudo apt-get install fontconfig-infinality
   ```
-  *Activate OSX render mode (or whatever you prefer)
+  * Activate OSX render mode (or whatever you prefer)
     ```sh
   $ sudo bash /etc/fonts/infinality/infctl.sh setstyle
   ```
