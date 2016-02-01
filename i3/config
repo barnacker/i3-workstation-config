@@ -97,8 +97,8 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 1%+ #&& killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 1%- #&& killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set 'Master' 1%+ #&& killall -SIGUSR1 i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer set 'Master' 1%- #&& killall -SIGUSR1 i3status
 #bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 
 # focus the child container
@@ -141,6 +141,7 @@ bindsym $mod+Shift+0 move container to workspace $wrk10
 
 #Auto windows assignation
 assign [instance="crx_knipolnnllmklapflnccelgolnpehhpl"] $wrk4
+#assign [title="Sococo"] $wrk4
 assign [class="Gnome-terminal"] $wrk1
 assign [class="google-chrome"] $wrk2
 assign [class="Firefox"] $wrk2
@@ -148,7 +149,7 @@ assign [class="jetbrains-pycharm-ce"] $wrk3
 
 # Float windows
 for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
-for_window [title="Sococo Screenshare is sharing your screen with app.sococo.com."] floating enable
+for_window [title="Sococo Screenshare"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -205,7 +206,7 @@ client.background       #ffffff
 # finds out, if available)
 bar {
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        tray_output primary
+        #tray_output primary
         colors {
 			background $bg-color
 	    	separator #757575
@@ -220,6 +221,10 @@ bar {
 exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/tlou-window.jpg
 exec --no-startup-id gnome-terminal
 #exec --no-startup-id google-chrome
+#exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id nm-applet
+exec --no-startup-id pa-applet
+
 
 #finish with compton
-exec_always --no-startup-id compton -f
+exec --no-startup-id compton -f
