@@ -5,7 +5,7 @@ After LiveCD Boot, setup the partitions:
 ```sh
 $ sudo apt-get install system-config-lvm
 ```
-Then install on your partition
+Then setup your virtual partitions and install Ubuntu on that.
 
 ##Install i3
 ```sh
@@ -16,17 +16,25 @@ $ apt-get update
 $ apt-get install i3
 ```
 
-##Install Chrome
+##Disable Nautilus Desktop Background
 ```sh
-$ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
-$ apt-get update
-$ sudo dpkg -i google-chrome-stable_current_amd64.deb #May give a dependency error
-$ sudo apt-get -f install #Should fix it
+$ gsettings set org.gnome.desktop.background show-desktop-icons false
 ```
+
+##Install pa-applet for Volume Controls
+https://github.com/fernandotcl/pa-applet
 
 ##Dark GTK Ambiance
 ```sh
 $ sudo add-apt-repository ppa:ravefinity-project/ppa
 $ sudo apt-get update
 $ sudo apt-get install ambiance-blackout-colors
+```
+
+##Install Chrome
+```sh
+$ sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+$ apt-get update
+$ sudo dpkg -i google-chrome-stable_current_amd64.deb #May give a dependency error
+$ sudo apt-get -f install #Should fix it
 ```
