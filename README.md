@@ -1,12 +1,14 @@
 # i3-workstation-config
 ##Ubuntu Gnome 15.10 on LVM(STRIPE)
 
-* After LiveCD Boot, setup the partitions:
+* After LiveCD Boot, setup the partitions
   ```sh
   $ sudo apt-get install system-config-lvm
   ```
+  
 * Then setup your virtual partitions and install Ubuntu on that.
 * Install i3
+
   ```sh
   $ echo "deb http://debian.sur5r.net/i3/ $(lsb_release -c -s) universe" >> /etc/apt/sources.list
   $ apt-get update
@@ -15,17 +17,19 @@
   $ apt-get install i3
   ```
 *Disable Nautilus Desktop Background
+
   ```sh
   $ gsettings set org.gnome.desktop.background show-desktop-icons false
   ```
 * Install pa-applet for Volume Controls
   https://github.com/fernandotcl/pa-applet
 * Dark GTK Ambiance
-```sh
-$ sudo add-apt-repository ppa:ravefinity-project/ppa
-$ sudo apt-get update
-$ sudo apt-get install ambiance-blackout-colors
-```
+
+  ```sh
+  $ sudo add-apt-repository ppa:ravefinity-project/ppa
+  $ sudo apt-get update
+  $ sudo apt-get install ambiance-blackout-colors
+  ```
 * Install feh
 * Install San Francisco Display Font
   * https://github.com/supermarin/YosemiteSanFranciscoFont
