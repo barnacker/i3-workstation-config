@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"ColorPicker",
 		"Colorsublime",
 		"Darkula Color Scheme",
 		"i3 wm",
