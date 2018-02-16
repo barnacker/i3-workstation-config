@@ -2,7 +2,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Francisco Display 13
+font pango:SFNS Display 13
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -14,7 +14,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$inactive-text-color" -hlbg "$bg-color" -hlfg "$text-color" -font "System San Francisco Display 18"
+#bindsym $mod+d exec exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$inactive-text-color" -hlbg "$bg-color" -hlfg "$text-color" -font "System San Francisco Display 18"
 
 # change focus
 bindsym $mod+j focus left
@@ -76,7 +76,7 @@ set $wrk4 "4 "
 set $wrk5 "5 "
 set $wrk6 "6 "
 set $wrk7 "7 "
-set $wrk8 "8 "
+set $wrk8 "8 "
 set $wrk9 "9 "
 set $wrk10 "10 "
 
@@ -91,6 +91,10 @@ bindsym $mod+7 workspace $wrk7
 bindsym $mod+8 workspace $wrk8
 bindsym $mod+9 workspace $wrk9
 bindsym $mod+0 workspace $wrk10
+
+#navigate in workspace
+bindsym $mod+Mod1+Left workspace prev_on_output
+bindsym $mod+Mod1+Right workspace next_on_output
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $wrk1
@@ -108,15 +112,15 @@ bindsym $mod+Shift+0 move container to workspace $wrk10
 
 assign [instance="crx_jfaelnolkgonnjdlkfokjadedkacbnib"] $wrk6
 assign [instance="crx_knipolnnllmklapflnccelgolnpehhpl"] $wrk4
-assign [class="Gnome-terminal"] $wrk1
-assign [class="google-chrome"] $wrk2
-assign [class="Firefox"] $wrk2
-assign [class="jetbrains-pycharm-ce"] $wrk3
-assign [class="Pgadmin3"] $wrk5
+#assign [class="Xfce4-terminal"] $wrk1
+#assign [class="Google-chrome"] $wrk2
+assign [class="Sublime_text"] $wrk3
+assign [class="Code"] $wrk3
+#assign [class="Pgadmin3"] $wrk5
+assign [class="Spotify"] $wrk10
 
 # Float windows
-for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
-for_window [title="Sococo Screenshare"] floating enable
+# for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -166,50 +170,61 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+#move workspace to left or right monitor
+bindsym $mod+Control+Left move workspace to output left
+bindsym $mod+Control+Right move workspace to output right
+
+# Pulse Audio controls
+#bindsym XF86AudioMute exec pactl set-sink-mute 10 toggle # mute sound
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
 #colors
-set $text-color 			#FF5200
-set $bg-color 				#111111
-set $inactive-text-color 	#444444
-set $inactive-bg-color 		#111111
+set $text-color 			#FFBF00
+set $bg-color 				#363636
+set $inactive-text-color 	        #666666
+set $inactive-bg-color 		        #363636
 set $indicator 				#341100
 set $urgent 				#900000
 set $bg-bar 				#0F0711
 
-# class                 border  	backgr. 	text    			 indicator
-client.focused          $bg-color 	$bg-color 	$text-color 		 $indicator
-client.focused_inactive $bg-color 	$bg-color 	$inactive-text-color $indicator
-client.unfocused        $bg-color 	$bg-color 	$inactive-text-color $indicator
-client.urgent           $urgent 	$urgent 	$bg-color 			 $urgent
-client.placeholder      $bg-color 	$bg-color 	$inactive-text-color $indicator
+# class                 border  	backgr. 	text    		        indicator
+client.focused          $bg-color 	$bg-color 	$text-color 		        $indicator
+client.focused_inactive $bg-color 	$bg-color 	$inactive-text-color            $indicator
+client.unfocused        $bg-color 	$bg-color 	$inactive-text-color            $indicator
+client.urgent           $urgent 	$urgent 	$bg-color 			$urgent
+client.placeholder      $bg-color 	$bg-color 	$inactive-text-color            $indicator
 
 client.background       #ffffff
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        #tray_output primary
+        status_command i3blocks -c ~/.i3/i3blocks.conf
+        tray_output primary
         colors {
 			background $bg-color
 	    	separator #757575
-			#                  border           	background         text
-			focused_workspace  $bg-color 			$bg-color          $text-color
-			inactive_workspace $inactive-bg-color 	$inactive-bg-color $inactive-text-color
-			urgent_workspace   $urgent 				$urgent   		   $text-color
+			#                  border           	background              text
+			focused_workspace  $bg-color 		$bg-color               $text-color
+			inactive_workspace $inactive-bg-color 	$inactive-bg-color      $inactive-text-color
+			urgent_workspace   $urgent 		$urgent                 $text-color
 	}
 }
 
 #startup items
-exec --no-startup-id xrandr --output VIRTUAL1 --off --output DP3 --off --output DP2 --mode 1920x1080 --pos 0x0 --rotate normal --output DP1 --off --output HDMI3 --off --output HDMI2 --off --output HDMI1 --off --output LVDS1 --mode 1920x1080 --pos 1920x0 --rotate normal --output VGA1 --off
-exec --no-startup-id setxkbmap us,ca -option grp:alt_shift_toggle
-
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpapers/tlou-window.jpg
-exec --no-startup-id gnome-terminal
-#exec --no-startup-id google-chrome
-#exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id xfsettingsd --sm-client-disable &
+exec --no-startup-id xfce4-panel --disable-wm-check
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
-exec --no-startup-id pa-applet
-
-
+exec --no-startup-id xfce4-volumed
+#exec --no-startup-id xfce4-terminal
+exec --no-startup-id google-chrome
+#bluetooth stuff
+exec --no-startup-id pactl load-module module-bluetooth-policy
+exec --no-startup-id pactl load-module module-bluetooth-discover
+exec --no-startup-id blueman-applet
 #finish with compton
 exec --no-startup-id compton -f
