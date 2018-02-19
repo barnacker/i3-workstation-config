@@ -60,3 +60,9 @@
   $ sudo dpkg -i google-chrome-stable_current_amd64.deb #May give a dependency error
   $ sudo apt-get -f install #Should fix it
   ```
+
+* To force install Pure when you are stuck with permissions error
+
+```sh
+  $ npm install --global pure-prompt --allow-root --unsafe-perm=true
+  ```
