@@ -21,7 +21,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "rofi -fullscreen -modi drun,run,window -show drun -lines 3 -eh 2 -width 100 -opacity \\"85\\" -bw 0 -bc \\"$bg-color\\" -bg \\"$bg-color\\" -fg \\"$text-color\\" -hlbg \\"$text-color\\" -hlfg \\"$bg-color\\" -font \\"System San Francisco Display 18\\""
+bindsym $mod+d exec "rofi -fullscreen -modi run,drun,window -show run -lines 3 -eh 2 -width 100 -opacity \\"85\\" -bw 0 -bc \\"$bg-color\\" -bg \\"$bg-color\\" -fg \\"$text-color\\" -hlbg \\"$text-color\\" -hlfg \\"$bg-color\\" -font \\"System San Francisco Display 18\\""
 
 # change focus
 bindsym $mod+j focus left
@@ -82,14 +82,14 @@ bindsym --release Print exec shutter
 
 set $wrk1 "1 "
 set $wrk2 "2 "
-set $wrk3 "3 "
-set $wrk4 "4 "
-set $wrk5 "5 "
+set $wrk3 "3 "
+set $wrk4 "4 "
+set $wrk5 "5 "
 set $wrk6 "6 "
 set $wrk7 "7 "
-set $wrk8 "8 "
+set $wrk8 "8 "
 set $wrk9 "9 "
-set $wrk10 "10 "
+set $wrk10 "10 "
 
 # switch to workspace
 bindsym $mod+1 workspace $wrk1
@@ -119,16 +119,33 @@ bindsym $mod+Shift+8 move container to workspace $wrk8
 bindsym $mod+Shift+9 move container to workspace $wrk9
 bindsym $mod+Shift+0 move container to workspace $wrk10
 
-#Auto windows assignation
+#Auto workspace and windows assignation
+workspace $wrk1 output HDMI-1
+workspace $wrk2 output DisplayPort-0
+workspace $wrk3 output HDMI-1
+workspace $wrk4 output HDMI-1
+workspace $wrk5 output LVDS
+workspace $wrk6 output DisplayPort-0
+workspace $wrk7 output DisplayPort-0
+workspace $wrk8 output DisplayPort-0
+workspace $wrk9 output DisplayPort-0
+workspace $wrk10 output HDMI-1
 
-assign [instance="crx_jfaelnolkgonnjdlkfokjadedkacbnib"] $wrk6
-assign [instance="crx_knipolnnllmklapflnccelgolnpehhpl"] $wrk4
+#assign [instance="crx_jfaelnolkgonnjdlkfokjadedkacbnib"] $wrk6
+assign [instance="crx_knipolnnllmklapflnccelgolnpehhpl"] $wrk10
 #assign [class="Xfce4-terminal"] $wrk1
-#assign [class="Google-chrome"] $wrk2
-assign [class="Sublime_text"] $wrk3
+
 assign [class="Code"] $wrk3
 #assign [class="Pgadmin3"] $wrk5
-assign [class="Spotify"] $wrk10
+#assign [class="^Spotify$"] $wrk5
+for_window [class="Spotify"] move to workspace $wrk5
+
+#for_window [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] floating disable; move workspace $wrk10
+
+assign [title="GIMP Startup"] $wrk8
+assign [class="Gimp-2.8"] $wrk8
+#for_window [window_role="^gimp-file"] move workspace $wrk8
+#for_window [window_role="^gimp-toolbox$"] floating disable
 
 # Float windows
 # for_window [instance="crx_gaedmjdfmmahhbjefcbgaolhhanlaolb"] floating enable
@@ -162,16 +179,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 1 ppt
+        bindsym k resize grow height 10 px or 1 ppt
+        bindsym l resize shrink height 10 px or 1 ppt
+        bindsym semicolon resize grow width 10 px or 1 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 1 ppt
+        bindsym Down resize grow height 10 px or 1 ppt
+        bindsym Up resize shrink height 10 px or 1 ppt
+        bindsym Right resize grow width 10 px or 1 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -212,9 +229,26 @@ client.placeholder      $bg-color 	$bg-color 	$inactive-text-color            $i
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
 bar {
-        #tray_output primary
-	status_command /home/barnacker/Documents/code/bumblebee-status/bumblebee-status -m load cpu memory disk:home nic pasink pasource battery date time -p time.format="%H:%M" date.format="%a, %b %d %Y" home.path=/home -t solarized-powerline
+        tray_output none
+        output LVDS
+        status_command /home/barnacker/Documents/code/bumblebee-status/bumblebee-status -m spotify pasink pasource bluetooth weather -t barnacker
+        colors {
+                        background $bg-color
+                        separator #757575
+
+                        #                  border               background              text
+                        focused_workspace  $bg-color            $bg-color               $text-color
+                        inactive_workspace $inactive-bg-color   $inactive-bg-color      $inactive-text-color
+                        urgent_workspace   $urgent              $urgent                 $text-color
+        }
+}
+
+bar {
+        #tray_output DisplayPort-0
+	output DisplayPort-0
+	status_command /home/barnacker/Documents/code/bumblebee-status/bumblebee-status -m cpu sensors memory disk:home uptime -p home.path=/home -t barnacker 
         colors {
 			background $bg-color
 	    		separator #757575
@@ -225,6 +259,22 @@ bar {
 			urgent_workspace   $urgent 		$urgent                 $text-color
 	}
 }
+
+bar {
+	tray_output none
+        output HDMI-1
+        status_command /home/barnacker/Documents/code/bumblebee-status/bumblebee-status -m nic traffic date time -p time.format="%H:%M" date.format="%a, %b %d %Y" nic.states="^down" traffic.states="^down" traffic.showname=false -t barnacker
+        colors {
+                        background $bg-color
+                        separator #757575
+
+                        #                  border               background              text
+                        focused_workspace  $bg-color            $bg-color               $text-color
+                        inactive_workspace $inactive-bg-color   $inactive-bg-color      $inactive-text-color
+                        urgent_workspace   $urgent              $urgent                 $text-color
+        }
+}
+
 
 #startup items
 
@@ -256,3 +306,6 @@ exec --no-startup-id pactl load-module module-bluetooth-discover
 exec --no-startup-id blueman-applet
 #nice cut and paste manager
 exec --no-startup-id parcellite -d
+
+#Layouts
+#exec --no-startup-id "i3-msg 'workspace 8 ; append_layout ~/.config/i3/workspace-8.json'"
