@@ -38,6 +38,6 @@ borg prune -v --list $REPOSITORY --prefix '{hostname}-' \
     --keep-yearly=1 \
     2>&1| tee -a $LOG
 
-rclone sync -v ./backup remote:barnaback 2>&1| tee -a $LOG
+rclone sync -v --config /home/barnacker/.config/rclone/rclone.conf /home/barnacker/backup backup-drive:workstation-backup/ 2>&1| tee -a $LOG
 
 echo "END-BACKUP   >>>>>>>>>>>>>>>>>>>" | tee -a $LOG
