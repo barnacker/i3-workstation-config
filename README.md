@@ -114,4 +114,5 @@ sudo apt install compton
 xrandr
 vim ~/.config/i3/config
 sudo apt install fonts-font-awesome
+ssh user@server -t tmux new -A -s name
   ```
