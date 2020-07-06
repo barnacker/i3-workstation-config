@@ -1,0 +1,34 @@
+{
+  "editor.fontFamily": "Fira Code",
+  "git.confirmSync": false,
+  "editor.fontLigatures": true,
+  "git.enableSmartCommit": true,
+  "workbench.colorTheme": "Seti Monokai",
+  "window.zoomLevel": 0,
+  "editor.formatOnSave": true,
+  "editor.mouseWheelZoom": true,
+  "vetur.format.defaultFormatterOptions": {
+    "prettyhtml": {
+      "printWidth": 120,
+    }
+  },
+  "vetur.format.defaultFormatter.js": "none",
+  "eslint.validate": [
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "eslint.autoFixOnSave": true,
+  "vetur.validation.template": false,
+  "editor.tabSize": 2,
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+  "git.autofetch": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+}
