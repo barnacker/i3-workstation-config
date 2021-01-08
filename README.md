@@ -1,4 +1,16 @@
 # i3-workstation-config
+## Node stuff
+```sh
+mkdir ~/.npm-packages
+npm config set prefix ~/.npm-packages
+npm list -g --depth=0
+npm install npm -g
+export PATH=$PATH:/home/barnacker/.npm-packages/bin/
+
+npm install @vue/cli -g
+vue --version
+
+```
 ##Ubuntu Gnome 15.10 on LVM(STRIPE)
 * After LiveCD Boot, setup the partitions
 
